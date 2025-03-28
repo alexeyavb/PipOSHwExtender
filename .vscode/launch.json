@@ -1,0 +1,47 @@
+{
+    "configurations": [
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "executable": "_build/stm32f446ret6/${workspaceFolderBasename}.elf",
+            "name": "Debug with OpenOCD",          
+            "servertype": "openocd",
+            "interface": "swd",
+            "gdbPath": "gdb-multiarch",            
+            "openOCDLaunchCommands": [
+            ],            
+            "configFiles": [
+                "interface/sysfsgpio-opizero2w.cfg",
+                "interface/sysfsgpio-opizero2w-cmd.cfg",
+                "target/stm32f4x.cfg",
+            ],
+            "searchDir": [],
+            "runToEntryPoint": "main",
+            "showDevDebugOutput": "raw",
+            "device": "STM32F446RE",
+            "svdFile": "${workspaceFolder}/../tinyusb/hw/svd/STMicroelectronics_CMSIS_SVD/STM32F446.svd",
+            "rtos": "auto",
+            "swoConfig": {                
+                "swoFrequency": 2000,
+            },
+        },
+        {
+            "type": "gdb",
+            "request": "launch",
+            "servertype": "openocd",
+            "name": "Debug with OpenOCD Launch gdb",
+            "executable": "build/${workspaceFolderBasename}",
+            "cwd": "${workspaceRoot}",
+            "gdbpath": "/usr/bin/gdb",
+            "autorun": [
+                "set remotetimeout 60",
+                "target remote | /usr/bin/openocd -c \"gdb_port pipe; log_output openocd.log\" -f sysfsgpio-opizero2w.cfg -f target/stm32f4x.cfg -c \"debug_level 2;init\"",
+            "mon reset halt",
+            "flushregs",
+            "thb main",
+            "c",
+            ],
+        }
+    ]
+}

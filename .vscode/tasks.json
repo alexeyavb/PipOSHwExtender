@@ -1,0 +1,66 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build DEBUG",
+            "type": "shell",
+            "command": "colormake",
+            "args": [
+                "BOARD=stm32f446ret6",
+                "DEBUG=1","LOG=0",
+                "all",
+//                "-j4"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": {
+                               "owner": "cpp",
+                                "fileLocation": [
+                                    "relative",
+                                    "${workspaceFolder}"
+                                ],
+                                "pattern": {
+                                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                                    "file": 1,
+                                    "line": 2,
+                                    "column": 3,
+                                    "severity": 4,
+                                    "message": 5
+                                }
+                            }
+        },
+        {
+            "label": "build RELEASE",
+            "type": "shell",
+            "command": "colormake",
+            "args": [
+                "BOARD=stm32f446ret6",
+                "DEBUG=0", "LOG=0", "LOGGER=",
+                "RELEASE=1",                
+                "all",
+                "-j6"
+            ],
+            // "group": {
+            //     "kind": "build",
+            //     "isDefault": false
+            // },
+            "problemMatcher": {"base": "$gcc", "fileLocation":"absolute"}
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "colormake",
+            "args": [
+                "BOARD=stm32f446ret6",
+                "clean"
+            ],
+            // "group": {
+            //     "kind": "build",
+            //     "isDefault": false
+            // },
+            "problemMatcher": {"base": "$gcc", "fileLocation":"absolute"}
+        }
+    ]
+}

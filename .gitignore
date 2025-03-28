@@ -1,0 +1,7 @@
+build/
+_build/
+resources/models/
+resources/videos/*.avi
+resources/videos/*.mpg
+resources/videos/*.hevc
+

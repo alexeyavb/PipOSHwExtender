@@ -1,0 +1,40 @@
+{
+    "configurations": [
+        {
+            "name": "vscode_stm32_c_cpp_properties",
+            "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+            "browse": {
+                "path": [
+                    "${workspaceRoot}/src/",    
+                    "${workspaceRoot}/../tinyusb/lib/CMSIS_5/CMSIS/Core/Include",
+                    "${workspaceRoot}/../tinyusb/src/**",                    
+                    "${workspaceRoot}/../tinyusb/hw/bsp/stm32f4/boards/stm32f446ret6/",
+                    "${workspaceRoot}/../tinyusb/hw/bsp/stm32f4/",
+                    "${workspaceRoot}/../tinyusb/hw/bsp/stm32f4/FreeRTOSConfig",
+                    "${workspaceRoot}/../tinyusb/hw/mcu/st/cmsis_device_f4/Include",
+                    "${workspaceRoot}/../tinyusb/hw/mcu/st/stm32f4xx_hal_driver/Inc"                        
+                ]
+            },
+            "includePath": [
+                "${workspaceRoot}/src/",
+                "${workspaceRoot}/../tinyusb/lib/CMSIS_5/CMSIS/Core/Include",
+                "${workspaceRoot}/../tinyusb/src/**",
+                "${workspaceRoot}/../tinyusb/hw/",
+                "${workspaceRoot}/../tinyusb/hw/bsp/stm32f4/boards/stm32f446ret6/",
+                "${workspaceRoot}/../tinyusb/hw/bsp/stm32f4/",
+                "${workspaceRoot}/../tinyusb/hw/bsp/stm32f4/FreeRTOSConfig",
+                "${workspaceRoot}/../tinyusb/hw/mcu/st/cmsis_device_f4/Include",
+                "${workspaceRoot}/../tinyusb/hw/mcu/st/stm32f4xx_hal_driver/Inc"
+            ],            
+            "defines": [
+                "STM32F446xx",
+                "CFG_TUSB_MCU", 
+                "OPT_MCU_STM32F4"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-gcc-arm"
+        }
+    ],
+    "version": 4
+}

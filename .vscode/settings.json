@@ -1,0 +1,20 @@
+{
+    "cortex-debug.armToolchainPath": "/usr/bin",
+    "cortex-debug.openocdPath": "/usr/bin/openocd",
+    "files.associations": {
+        "stm32f4xx_hal.h": "c",
+        "stm32f4xx_hal_conf.h": "c",
+        "stm32f4xx_hal_rcc.h": "c",
+        "stm32f4xx_hal_def.h": "c",
+        "stm32f4xx.h": "c",
+        "stm32f446xx.h": "c",
+        "system_stm32f4xx.h": "c",
+        "board_api.h": "c",
+        "board.h": "c",
+        "i2c_slave.h": "c",
+        "registers.h": "c",
+        "i2c.h": "c"
+    },
+    "cortex-debug.variableUseNaturalFormat": true,
+    "C_Cpp.dimInactiveRegions": true
+}
