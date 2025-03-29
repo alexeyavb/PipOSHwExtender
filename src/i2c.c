@@ -32,7 +32,7 @@ void HAL_I2C_AddrCallback(I2C_HandleTypeDef *hi2c, uint8_t TransferDirection, ui
         // Мастер пишет какие то данные
         // Первый запрос всегда 1 байт и содержит адрес регистра
         // Сохраняем в temporary_reg.reg_address
-        HAL_I2C_Slave_Sequential_Receive_IT(hi2c, &temporary_reg.reg_address, 1, I2C_FIRST_FRAME);  //I2C_FIRST_AND_LAST_FRAME
+        HAL_I2C_Slave_Sequential_Receive_IT(hi2c, &temporary_reg.reg_address, 1, I2C_FIRST_FRAME); 
     }
     else{
         // Мастер хочет считать данные

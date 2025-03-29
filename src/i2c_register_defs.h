@@ -9,7 +9,7 @@
 #define REG_BOOL_RW_ADDR                0x03
 #define REG_CHAR_RW_ADDR                0x04
 #define REG_UINT32_RW_ADDR              0x05
-#define REG_INT32_RW_ADDR               0x04
+#define REG_INT32_RW_ADDR               0x06
 
 #define REG_UINT16_RO_ADDR              0x11
 #define REG_INT16_RO_ADDR               0x12
@@ -18,8 +18,11 @@
 #define REG_UINT32_RO_ADDR              0x15
 #define REG_INT32_RO_ADDR               0x16
 
+#define I2C_CHAR_ARRAY_SZ               0x16
+
 //Register structure
 typedef struct reg_t reg_t;
+typedef struct char32_array char32_array;
 typedef union var_t var_t;
 typedef enum val_type_t val_type_t;
 
@@ -88,5 +91,48 @@ typedef struct i2c_s {
     uint8_t     reg_addr_rcvd;
     uint8_t     reg_address;
 } i2c_t;
+
+typedef struct char32_array{
+    const uint32_t array_sz;
+    char f_char32_array[I2C_CHAR_ARRAY_SZ];
+}char_array;
+
+// Описатель регистра RTC
+#define HW_EXTEDNER_I2C_REG_BASE 0x11
+
+
+// Начальное смещение
+#define HW_STD_OFFSET (0x05)
+#define HW_EXTENDER_RTC_REG_OFFSET  (HW_EXTEDNER_I2C_REG_BASE + HW_STD_OFFSET)
+#define HW_RTC_BASE (HW_EXTENDER_RTC_REG_OFFSET)
+
+// Адреса функций
+#define HW_RTC_SECONDS_ADDR  HW_RTC_BASE
+#define HW_RTC_MINUTES_ADDR  (HW_RTC_BASE + 0x01)
+#define HW_RTC_HOURS_ADDR    (HW_RTC_BASE + 0x02)
+#define HW_RTC_DAY_ADDR      (HW_RTC_BASE + 0x03)
+#define HW_RTC_DATE_ADDR     (HW_RTC_BASE + 0x04)
+#define HW_RTC_MONTH_ADDR    (HW_RTC_BASE + 0x05)
+#define HW_RTC_YEAR_ADDR     (HW_RTC_BASE + 0x06)
+#define HW_RTC_CONTROL_ADDR  (HW_RTC_BASE + 0x07)
+#define HW_RTC_RAM00_ADDR    (HW_RTC_BASE + 0x08)
+#define HW_RTC_RAM01_ADDR    (HW_RTC_BASE + 0x09)
+#define HW_RTC_RAM02_ADDR    (HW_RTC_BASE + 0x0A)
+#define HW_RTC_RAM03_ADDR    (HW_RTC_BASE + 0x0B)
+#define HW_RTC_RAM04_ADDR    (HW_RTC_BASE + 0x0C)
+#define HW_RTC_RAM05_ADDR    (HW_RTC_BASE + 0x0D)
+#define HW_RTC_RAM06_ADDR    (HW_RTC_BASE + 0x0E)
+#define HW_RTC_RAM07_ADDR    (HW_RTC_BASE + 0x0F)
+#define HW_RTC_RAM08_ADDR    (HW_RTC_BASE + 0x10)
+#define HW_RTC_RAM09_ADDR    (HW_RTC_BASE + 0x11)
+#define HW_RTC_RAM0A_ADDR    (HW_RTC_BASE + 0x12)
+#define HW_RTC_RAM0B_ADDR    (HW_RTC_BASE + 0x13)
+#define HW_RTC_RAM0C_ADDR    (HW_RTC_BASE + 0x14)
+#define HW_RTC_RAM0D_ADDR    (HW_RTC_BASE + 0x15)
+#define HW_RTC_RAM0E_ADDR    (HW_RTC_BASE + 0x16)
+#define HW_RTC_RAM0F_ADDR    (HW_RTC_BASE + 0x17)
+#define HW_RTC_VERSION_ADDR  (HW_RTC_BASE + 0x18)
+#define HW_RTC_NUM_ID_ADDR   (HW_RTC_BASE + 0x19)
+
 
 #endif

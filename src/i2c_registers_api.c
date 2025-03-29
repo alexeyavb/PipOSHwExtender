@@ -75,6 +75,10 @@ void reg_ctrl_process_data(reg_idx_t idx){
         break;
     case INT16_RW:        
         break;
+    case UINT32_RW:        
+        break;
+    case INT32_RW:
+        break;
     default:
         break;
     }
