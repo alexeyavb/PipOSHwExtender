@@ -26,30 +26,34 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+
 #include <bsp/board_api.h>
 #include <stm32f4xx_hal.h>
 /* Blink pattern
  * - 250 ms  : button is not pressed
  * - 1000 ms : button is pressed (and hold)
  */
-enum {
+enum blink_intervals{
+  BLINK_PROCESS = 25,
+  BLINK_ERROR = 100,
   BLINK_PRESSED = 250,
   BLINK_UNPRESSED = 1000
 };
+uint32_t interval_ms;
 
 #define HELLO_STR   "Hello from TinyUSB\r\n\0"
-
 int main(void) {
+
   board_init();
   board_led_write(true);
-  extern void reset_registers_data(void); reset_registers_data();
+
   board_uart_write(HELLO_STR, strlen(HELLO_STR));
 
   uint32_t start_ms = 0;
   bool led_state = false;
   
   while (1) {
-    uint32_t interval_ms = board_button_read() ? BLINK_PRESSED : BLINK_UNPRESSED;
+    interval_ms = board_button_read() ? BLINK_PRESSED : BLINK_UNPRESSED;
 
     // Blink and print every interval ms
     if (!(board_millis() - start_ms < interval_ms)) {
@@ -57,6 +61,9 @@ int main(void) {
       start_ms = board_millis();
 
       board_led_write(led_state);
+      extern void SendCurrentTimestamp_to_I2C_Register(void);
+      SendCurrentTimestamp_to_I2C_Register();
+
       led_state = 1 - led_state; // toggle
     }
 

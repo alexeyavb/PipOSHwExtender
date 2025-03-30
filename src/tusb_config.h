@@ -44,8 +44,10 @@
 #endif
 
 // Espressif IDF requires "freertos/" prefix in include path
+#ifdef TUSB_MCU_VENDOR_ESPRESSIF
 #if TUSB_MCU_VENDOR_ESPRESSIF
 #define CFG_TUSB_OS_INC_PATH  freertos/
+#endif
 #endif
 
 // This example only test LED & GPIO, disable both device and host stack
@@ -68,6 +70,10 @@
 
 #ifndef CFG_TUSB_MEM_ALIGN
 #define CFG_TUSB_MEM_ALIGN          __attribute__ ((aligned(4)))
+#endif
+
+#ifdef STM32F446xx
+#define __USE_RTC_REGISTERS 1
 #endif
 
 #ifdef __cplusplus

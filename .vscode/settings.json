@@ -13,8 +13,11 @@
         "board.h": "c",
         "i2c_slave.h": "c",
         "registers.h": "c",
-        "i2c.h": "c"
+        "i2c.h": "c",
+        "rtcclock.h": "c",
+        "i2c_registers_api.h": "c",
+        "i2c_register_defs.h": "c"
     },
-    "cortex-debug.variableUseNaturalFormat": true,
+    "cortex-debug.variableUseNaturalFormat": false,
     "C_Cpp.dimInactiveRegions": true
 }
