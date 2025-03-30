@@ -21,8 +21,8 @@ reg_t g_i2c_reg_data[] =
 
 #ifdef __USE_RTC_REGISTERS
 reg_t g_i2c_rtc_registers[] = {
-    [RTC_REGISTER_VERSION] = { READ_ONLY,HW_RTC_VERSION_ADDR,   CHAR,   {.char_val    = 0x1a},    {.char_val = 0x1a} },
-    [RTC_SUBSECS]   = { FULL_ACCESS,    HW_RTC_SUBSECS_ADDR,    CHAR,   {.char_val  = 0x00},    {0} },
+    [RTC_VERSION]   = { READ_ONLY,      HW_RTC_VERSION_ADDR,    CHAR,   {.char_val  = 0x10}, {.char_val = 0x1e} },
+    [RTC_SUBSECS]   = { FULL_ACCESS,    HW_RTC_SUBSECS_ADDR,    UINT32, {.uint32_val  = 0x2b2b2b2b}, {.uint32_val = 0x2b2b2b2b} },
     [RTC_SECONDS]   = { FULL_ACCESS,    HW_RTC_SECONDS_ADDR,    CHAR,   {.char_val  = 0x00},    {0} },
     [RTC_MINUTES]   = { FULL_ACCESS,    HW_RTC_MINUTES_ADDR,    CHAR,   {.char_val  = 0x00},    {0} },
     [RTC_HOURS]     = { FULL_ACCESS,    HW_RTC_HOURS_ADDR,      CHAR,   {.char_val  = 0x00},    {0} },
@@ -31,7 +31,7 @@ reg_t g_i2c_rtc_registers[] = {
     [RTC_MONTH]     = { FULL_ACCESS,    HW_RTC_MONTH_ADDR,      CHAR,   {.char_val  = 0x00},    {0} },
     [RTC_YEAR]      = { FULL_ACCESS,    HW_RTC_YEAR_ADDR,       CHAR,   {.char_val  = 0x00},    {0} },
     [RTC_CONTROL]   = { FULL_ACCESS,    HW_RTC_CONTROL_ADDR,    CHAR,   {.char_val  = 0xAA},    {0} },
-    [RTC_RAM00]     = { FULL_ACCESS,    HW_RTC_RAM00_ADDR,   UINT32,   {.uint32_val  = 0x00},    {0} },
+    [RTC_RAM00]     = { FULL_ACCESS,    HW_RTC_RAM00_ADDR,      CHAR,  {.uint32_val  = 0x00},    {0} },
     [RTC_RAM01]     = { FULL_ACCESS,    HW_RTC_RAM01_ADDR,   UINT32,   {.uint32_val  = 0x00},    {0} },
     [RTC_RAM02]     = { FULL_ACCESS,    HW_RTC_RAM02_ADDR,   UINT32,   {.uint32_val  = 0x00},    {0} },
     [RTC_RAM03]     = { FULL_ACCESS,    HW_RTC_RAM03_ADDR,   UINT32,   {.uint32_val  = 0x00},    {0} },
@@ -47,5 +47,6 @@ reg_t g_i2c_rtc_registers[] = {
     [RTC_RAM0D]     = { FULL_ACCESS,    HW_RTC_RAM0D_ADDR,   UINT32,   {.uint32_val  = 0x00},    {0} },
     [RTC_RAM0E]     = { FULL_ACCESS,    HW_RTC_RAM0E_ADDR,   UINT32,   {.uint32_val  = 0x00},    {0} },
     [RTC_RAM0F]     = { FULL_ACCESS,    HW_RTC_RAM0F_ADDR,   UINT32,   {.uint32_val  = 0x00},    {0} }
-} , *LP_I2C_RTC_REGISTERS;
+};
+
 #endif 

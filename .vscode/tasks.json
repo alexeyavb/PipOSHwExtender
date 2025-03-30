@@ -6,6 +6,7 @@
             "type": "shell",
             "command": "colormake",
             "args": [
+                "-j`nproc`",
                 "BOARD=stm32f446ret6",
                 "DEBUG=1","LOG=0",
                 "all",

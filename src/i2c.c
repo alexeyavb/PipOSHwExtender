@@ -40,7 +40,7 @@ void HAL_I2C_AddrCallback(I2C_HandleTypeDef *hi2c, uint8_t TransferDirection, ui
                     temporary_reg.curr_idx != RTC_NONE
                     && temporary_reg.curr_idx != RTC_ECHO
         ){
-                uint8_t *pData =((uint8_t*)&g_i2c_rtc_registers[temporary_reg.curr_idx].value.uint16_val);
+                uint8_t *pData =((uint8_t*)&g_i2c_rtc_registers[temporary_reg.curr_idx].value.uint32_val);
                 uint8_t Size = reg_rtc_get_len(temporary_reg.curr_idx);
                 HAL_I2C_Slave_Sequential_Transmit_IT(hi2c, pData, Size, I2C_LAST_FRAME);
         }     
@@ -64,7 +64,7 @@ void HAL_I2C_SlaveRxCpltCallback(I2C_HandleTypeDef *hi2c){
             (temporary_reg.curr_idx != RTC_NONE && temporary_reg.curr_idx != RTC_ECHO)
                 && (g_i2c_rtc_registers[temporary_reg.curr_idx].access != READ_ONLY)
         ){
-            uint8_t *pData =((uint8_t*)&g_i2c_rtc_registers[temporary_reg.curr_idx].value.uint16_val);
+            uint8_t *pData =((uint8_t*)&g_i2c_rtc_registers[temporary_reg.curr_idx].value.uint32_val);
             uint8_t Size = reg_rtc_get_len(temporary_reg.curr_idx);
             HAL_I2C_Slave_Sequential_Receive_IT(hi2c, pData, Size, I2C_NEXT_FRAME);
         }

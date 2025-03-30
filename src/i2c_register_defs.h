@@ -116,40 +116,40 @@ extern reg_t g_i2c_reg_data[];          // Test example register
 /////////////////////////////////
 
 // Описатель регистра RTC
-#define HW_EXTEDNER_I2C_REG_BASE 0x11
-#define HW_STD_OFFSET (0x05)
+#define HW_EXTEDNER_I2C_REG_BASE 0x00U
+#define HW_STD_OFFSET (0x00U)
 
 #define HW_EXTENDER_RTC_REG_OFFSET  (HW_EXTEDNER_I2C_REG_BASE + HW_STD_OFFSET)
 #define HW_RTC_BASE (HW_EXTENDER_RTC_REG_OFFSET)
 
 // Адреса функций
 #define HW_RTC_VERSION_ADDR  HW_RTC_BASE
-#define HW_RTC_SUBSECS_ADDR  (HW_RTC_BASE + 0x01)
-#define HW_RTC_SECONDS_ADDR  (HW_RTC_BASE + 0x02)
-#define HW_RTC_MINUTES_ADDR  (HW_RTC_BASE + 0x03)
-#define HW_RTC_HOURS_ADDR    (HW_RTC_BASE + 0x04)
-#define HW_RTC_DAY_ADDR      (HW_RTC_BASE + 0x05)
-#define HW_RTC_DATE_ADDR     (HW_RTC_BASE + 0x06)
-#define HW_RTC_MONTH_ADDR    (HW_RTC_BASE + 0x07)
-#define HW_RTC_YEAR_ADDR     (HW_RTC_BASE + 0x08)
-#define HW_RTC_CONTROL_ADDR  (HW_RTC_BASE + 0x09)
-#define HW_RTC_RAM00_ADDR    (HW_RTC_BASE + 0x0A)
-#define HW_RTC_RAM01_ADDR    (HW_RTC_BASE + 0x0B)
-#define HW_RTC_RAM02_ADDR    (HW_RTC_BASE + 0x0C)
-#define HW_RTC_RAM03_ADDR    (HW_RTC_BASE + 0x0D)
-#define HW_RTC_RAM04_ADDR    (HW_RTC_BASE + 0x0E)
-#define HW_RTC_RAM05_ADDR    (HW_RTC_BASE + 0x0F)
-#define HW_RTC_RAM06_ADDR    (HW_RTC_BASE + 0x10)
-#define HW_RTC_RAM07_ADDR    (HW_RTC_BASE + 0x11)
-#define HW_RTC_RAM08_ADDR    (HW_RTC_BASE + 0x12)
-#define HW_RTC_RAM09_ADDR    (HW_RTC_BASE + 0x13)
-#define HW_RTC_RAM0A_ADDR    (HW_RTC_BASE + 0x14)
-#define HW_RTC_RAM0B_ADDR    (HW_RTC_BASE + 0x15)
-#define HW_RTC_RAM0C_ADDR    (HW_RTC_BASE + 0x16)
-#define HW_RTC_RAM0D_ADDR    (HW_RTC_BASE + 0x17)
-#define HW_RTC_RAM0E_ADDR    (HW_RTC_BASE + 0x18)
-#define HW_RTC_RAM0F_ADDR    (HW_RTC_BASE + 0x19)
-#define HW_RTC_NUM_ID_ADDR   (HW_RTC_BASE + 0x1A)
+#define HW_RTC_SUBSECS_ADDR  (HW_RTC_BASE + 1U)
+#define HW_RTC_SECONDS_ADDR  (HW_RTC_BASE + 2U)
+#define HW_RTC_MINUTES_ADDR  (HW_RTC_BASE + 3U)
+#define HW_RTC_HOURS_ADDR    (HW_RTC_BASE + 4U)
+#define HW_RTC_DAY_ADDR      (HW_RTC_BASE + 5U)
+#define HW_RTC_DATE_ADDR     (HW_RTC_BASE + 6U)
+#define HW_RTC_MONTH_ADDR    (HW_RTC_BASE + 7U)
+#define HW_RTC_YEAR_ADDR     (HW_RTC_BASE + 8U)
+#define HW_RTC_CONTROL_ADDR  (HW_RTC_BASE + 9U)
+#define HW_RTC_RAM00_ADDR    (HW_RTC_BASE + 10U)
+#define HW_RTC_RAM01_ADDR    (HW_RTC_BASE + 11U)
+#define HW_RTC_RAM02_ADDR    (HW_RTC_BASE + 12U)
+#define HW_RTC_RAM03_ADDR    (HW_RTC_BASE + 13U)
+#define HW_RTC_RAM04_ADDR    (HW_RTC_BASE + 14U)
+#define HW_RTC_RAM05_ADDR    (HW_RTC_BASE + 15U)
+#define HW_RTC_RAM06_ADDR    (HW_RTC_BASE + 16U)
+#define HW_RTC_RAM07_ADDR    (HW_RTC_BASE + 17U)
+#define HW_RTC_RAM08_ADDR    (HW_RTC_BASE + 18U)
+#define HW_RTC_RAM09_ADDR    (HW_RTC_BASE + 19U)
+#define HW_RTC_RAM0A_ADDR    (HW_RTC_BASE + 20U)
+#define HW_RTC_RAM0B_ADDR    (HW_RTC_BASE + 21U)
+#define HW_RTC_RAM0C_ADDR    (HW_RTC_BASE + 22U)
+#define HW_RTC_RAM0D_ADDR    (HW_RTC_BASE + 23U)
+#define HW_RTC_RAM0E_ADDR    (HW_RTC_BASE + 24U)
+#define HW_RTC_RAM0F_ADDR    (HW_RTC_BASE + 25U)
+#define HW_RTC_NUM_ID_ADDR   (HW_RTC_BASE + 26U)
 
 // Описатель комманд
 #define HW_RTC_CMD_INITIAL                  0xAA
@@ -183,7 +183,7 @@ extern reg_t g_i2c_reg_data[];          // Test example register
 typedef enum rtc_reg_idx_t{
     RTC_NONE    = - 2,
     RTC_ECHO    = - 1,
-    RTC_REGISTER_VERSION = 0,
+    RTC_VERSION = 0,
     RTC_SUBSECS,
     RTC_SECONDS,
     RTC_MINUTES,

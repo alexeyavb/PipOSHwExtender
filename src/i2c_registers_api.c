@@ -1,7 +1,7 @@
 #include "i2c_registers_api.h"
 
 rtc_reg_idx_t reg_rtc_get_idx(uint8_t address){
-	for(int i = RTC_REGISTER_VERSION; i < RTC_REGISTER_SZ; i++){
+	for(int i = RTC_VERSION; i < RTC_REGISTER_SZ; i++){
 		if (g_i2c_rtc_registers[i].reg_addr == address){
 			return i;
 		}
