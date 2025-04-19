@@ -22,7 +22,7 @@ reg_t g_i2c_reg_data[] =
 #ifdef __USE_RTC_REGISTERS
 reg_t g_i2c_rtc_registers[] = {
     [RTC_VERSION]   = { READ_ONLY,      HW_RTC_VERSION_ADDR,    CHAR,   {.char_val  = 0x10}, {.char_val = 0x1e} },
-    [RTC_SUBSECS]   = { FULL_ACCESS,    HW_RTC_SUBSECS_ADDR,    UINT32, {.uint32_val  = 0x2b2b2b2b}, {.uint32_val = 0x2b2b2b2b} },
+    [RTC_SUBSECS]   = { FULL_ACCESS,    HW_RTC_SUBSECS_ADDR,    UINT32, {.uint32_val  = 0x2b}, {.uint32_val = 0x2b} },
     [RTC_SECONDS]   = { FULL_ACCESS,    HW_RTC_SECONDS_ADDR,    CHAR,   {.char_val  = 0x00},    {0} },
     [RTC_MINUTES]   = { FULL_ACCESS,    HW_RTC_MINUTES_ADDR,    CHAR,   {.char_val  = 0x00},    {0} },
     [RTC_HOURS]     = { FULL_ACCESS,    HW_RTC_HOURS_ADDR,      CHAR,   {.char_val  = 0x00},    {0} },

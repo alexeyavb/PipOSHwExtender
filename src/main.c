@@ -29,6 +29,9 @@
 
 #include <bsp/board_api.h>
 #include <stm32f4xx_hal.h>
+
+#include "rtcclock.h"
+
 /* Blink pattern
  * - 250 ms  : button is not pressed
  * - 1000 ms : button is pressed (and hold)
@@ -39,7 +42,22 @@ enum blink_intervals{
   BLINK_PRESSED = 250,
   BLINK_UNPRESSED = 1000
 };
-uint32_t interval_ms;
+
+enum sync_time_interval{
+  NO_SYNC = -1,
+  FIRST_SYNC = 100,
+  NEXT_SYNC = 1000,
+  NORMAL_SYNC = 5000
+};
+
+static uint32_t interval_ms = 0;
+static uint32_t board_ms = 0;
+
+//timesynchronization variables
+// {
+static uint32_t synct_interval_ms = 0;
+static bool first_sync = true;
+// }
 
 #define HELLO_STR   "Hello from TinyUSB\r\n\0"
 int main(void) {
@@ -51,22 +69,60 @@ int main(void) {
 
   uint32_t start_ms = 0;
   bool led_state = false;
-  
+
+  uint32_t start_tsync_ms = 0;
+
   while (1) {
+    // shared
     interval_ms = board_button_read() ? BLINK_PRESSED : BLINK_UNPRESSED;
+    
+    // timesync
+    synct_interval_ms = first_sync ? FIRST_SYNC : NORMAL_SYNC;
+    first_sync = true;
 
     // Blink and print every interval ms
-    if (!(board_millis() - start_ms < interval_ms)) {
-
-      start_ms = board_millis();
-
+    board_ms = board_millis() ; // blinc calculation
+    if (!(board_ms - start_ms < interval_ms)) {
+      start_ms = board_ms;
       board_led_write(led_state);
-      extern void SendCurrentTimestamp_to_I2C_Register(void);
-      SendCurrentTimestamp_to_I2C_Register();
-
       led_state = 1 - led_state; // toggle
     }
+    
+    board_ms = board_millis() ; // tymesync calculation
+    if(!(board_ms - start_tsync_ms < synct_interval_ms)) {
+      start_tsync_ms = board_ms;
+      // Read current fag in i2c register
+      uint32_t ts_current_flag = GetHRTC_CurrentControlRegisterFlag();
+      if(!(ts_current_flag == 0xAA || ts_current_flag == 0xBB || ts_current_flag == 0xDD)){
+        // no stop update flags, trying send timestamp to registers
+        SendStartHandshakeCmd();
+        SendCurrentTimestamp_to_I2C_Register();
+      }
 
+      // Received handshake ok from board
+      if(ts_current_flag == 0xBB){
+        rtc_timestamp_t* tss;
+        tss = ReadCurrentTimestamp_from_I2C_Register();        
+        UNUSED(tss);
+      }
+
+      // Received timesync ok from board
+      if(ts_current_flag == 0xCC){
+        
+      }
+
+      // Received timestamp from board to mcu
+      if(ts_current_flag == 0xDD){
+
+      }
+
+      // Send datetimesync from board to mcu
+      if(ts_current_flag == 0xEE){
+
+      }
+
+
+    }
     // // echo
     // uint8_t ch;
     // if (board_uart_read(&ch, 1) > 0) {
