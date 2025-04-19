@@ -102,8 +102,10 @@ int main(void) {
       // Received handshake ok from board
       if(ts_current_flag == 0xBB){
         rtc_timestamp_t* tss;
-        tss = ReadCurrentTimestamp_from_I2C_Register();        
-        UNUSED(tss);
+        tss = ReadCurrentTimestamp_from_I2C_Register();  
+        SetMCUTime((RTC_TimeTypeDef*)(&tss->Time));
+        SetMCUDate((RTC_DateTypeDef*)(&tss->Date));
+        extern void SendSetTimestampInfo(void); SendSetTimestampInfo();
       }
 
       // Received timesync ok from board

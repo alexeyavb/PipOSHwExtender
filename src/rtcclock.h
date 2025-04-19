@@ -16,6 +16,8 @@ extern void SendCurrentTimestamp_to_I2C_Register(void);
 extern void SendStartHandshakeCmd(void);
 extern rtc_timestamp_t* ReadCurrentTimestamp_from_I2C_Register(void);
 
+extern HAL_StatusTypeDef SetMCUTime(RTC_TimeTypeDef* sTime);
+extern HAL_StatusTypeDef SetMCUDate(RTC_DateTypeDef* sDate);
 
 
 /// @brief Пример установки даты/времени
